@@ -9,13 +9,13 @@ import javax.validation.constraints.Size;
 
 public class AutorDTO {
 
-    @NotBlank
+    @NotBlank(message = "Campo obrigatório")
     private String nome;
 
-    @NotBlank @Email @Column(unique = true)
+    @NotBlank(message = "Campo obrigatório") @Email @Column(unique = true)
     private String email;
 
-    @NotBlank @Size(max = 400)
+    @NotBlank(message = "Campo obrigatório") @Size(max = 400)
     private String descricao;
 
     public AutorDTO(@NotBlank String nome, @NotBlank @Email String email, @NotBlank @Size(max = 400) String descricao) {
