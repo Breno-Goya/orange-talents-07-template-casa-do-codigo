@@ -1,5 +1,7 @@
 package br.com.zupacademy.breno.casadocodigo.entities;
 
+import br.com.zupacademy.breno.casadocodigo.validations.annotations.UniqueValue;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
@@ -12,10 +14,15 @@ public class Categoria {
     @NotBlank @Column(unique = true)
     private String nome;
 
+    @Deprecated
     public Categoria() {
     }
 
     public Categoria(@NotBlank String nome) {
         this.nome = nome;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

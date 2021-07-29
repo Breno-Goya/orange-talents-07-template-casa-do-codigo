@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.net.URI;
 
 @RestController
 public class CategoriaController {
@@ -30,10 +31,11 @@ public class CategoriaController {
     }
 
     @PostMapping(value = "/categorias")
-    @Transactional
-    public ResponseEntity<CategoriaDTO> cadastra(@RequestBody @Valid CategoriaDTO categoriaDTO) {
-        Categoria categoria = categoriaDTO.toModel();
+    public ResponseEntity<?> cadastra(@RequestBody @Valid CategoriaDTO dto, UriComponentsBuilder uriComponentsBuilder) {
+
+        Categoria categoria = dto.toModel();
+        URI uri = uriComponentsBuilder.path("/categorias/{id}").buildAndExpand(categoria.getId()).toUri();
         repository.save(categoria);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.created(uri).build();
     }
 }

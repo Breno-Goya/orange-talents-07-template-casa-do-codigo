@@ -7,10 +7,14 @@ import br.com.zupacademy.breno.casadocodigo.validations.EmailDuplicadoAutorValid
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
-import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.net.URI;
 
 @RestController
 public class AutorController {
@@ -27,10 +31,12 @@ public class AutorController {
     }
 
     @PostMapping(value = "/autores")
-    @Transactional
-    public ResponseEntity<AutorDTO> cadastra(@RequestBody @Valid AutorDTO autorDTO) {
-        Autor autor = autorDTO.toModel();
+    public ResponseEntity<?> cadastra(@RequestBody @Valid AutorDTO dto, UriComponentsBuilder uriComponentsBuilder) {
+
+        Autor autor = dto.toModel();
         repository.save(autor);
-        return ResponseEntity.ok().build();
+        URI uri = uriComponentsBuilder.path("autores/{id}").buildAndExpand(autor.getId()).toUri();
+
+        return ResponseEntity.created(uri).build();
     }
 }
