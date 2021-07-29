@@ -14,7 +14,7 @@ import java.util.Optional;
 public class EmailDuplicadoAutorValidator implements Validator {
 
     @Autowired
-    private AutorRepository autorRepository;
+    private AutorRepository repository;
 
     @Override
     public boolean supports(Class<?> aClass) {
@@ -27,9 +27,9 @@ public class EmailDuplicadoAutorValidator implements Validator {
             return;
         }
         AutorDTO autorDTO = (AutorDTO) o;
-        Optional<Autor> autor = autorRepository.findByEmail(autorDTO.getEmail());
+        Optional<Autor> possivelAutor = repository.findByEmail(autorDTO.getEmail());
 
-        if (autor.isPresent()) {
+        if (possivelAutor.isPresent()) {
             errors.rejectValue("email", null, "Email já cadastrado " + autorDTO.getEmail());
         }
     }

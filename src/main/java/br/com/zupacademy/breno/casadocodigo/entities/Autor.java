@@ -30,15 +30,4 @@ public class Autor {
         this.email = email;
         this.descricao = descricao;
     }
-
-    @Override
-    public String toString() {
-        return "Autor{" +
-                "id=" + id +
-                ", nome='" + nome + '\'' +
-                ", email='" + email + '\'' +
-                ", descricao='" + descricao + '\'' +
-                ", momento=" + momento +
-                '}';
-    }
 }
