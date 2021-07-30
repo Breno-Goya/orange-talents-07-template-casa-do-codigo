@@ -18,6 +18,7 @@ public class AutorDTO {
     @NotBlank(message = "Campo obrigatório") @Size(max = 400)
     private String descricao;
 
+
     public AutorDTO(@NotBlank String nome, @NotBlank @Email String email, @NotBlank @Size(max = 400) String descricao) {
         this.nome = nome;
         this.email = email;

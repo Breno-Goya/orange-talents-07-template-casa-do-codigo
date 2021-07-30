@@ -36,6 +36,6 @@ public class CategoriaController {
         Categoria categoria = dto.toModel();
         URI uri = uriComponentsBuilder.path("/categorias/{id}").buildAndExpand(categoria.getId()).toUri();
         repository.save(categoria);
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity.created(uri).body(categoria);
     }
 }

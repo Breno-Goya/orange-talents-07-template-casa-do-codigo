@@ -37,6 +37,6 @@ public class AutorController {
         repository.save(autor);
         URI uri = uriComponentsBuilder.path("autores/{id}").buildAndExpand(autor.getId()).toUri();
 
-        return ResponseEntity.created(uri).build();
+        return ResponseEntity.created(uri).body(autor);
     }
 }

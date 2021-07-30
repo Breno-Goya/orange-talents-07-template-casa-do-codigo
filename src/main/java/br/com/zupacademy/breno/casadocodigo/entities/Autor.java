@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
-import java.time.Instant;
+import java.time.LocalDate;
 
 @Entity
 public class Autor {
@@ -21,7 +21,7 @@ public class Autor {
     @NotBlank @Size(max = 400)
     private String descricao;
 
-    private Instant momento = Instant.now();
+    private LocalDate momento = LocalDate.now();
 
     @Deprecated
     public Autor() {}
