@@ -7,19 +7,20 @@ import br.com.zupacademy.breno.casadocodigo.entities.Livro;
 import br.com.zupacademy.breno.casadocodigo.repositories.AutorRepository;
 import br.com.zupacademy.breno.casadocodigo.repositories.CategoriaRepository;
 import br.com.zupacademy.breno.casadocodigo.repositories.LivroRepository;
+import br.com.zupacademy.breno.casadocodigo.response.LivroResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/livros")
 public class LivroController {
 
     @Autowired
@@ -30,7 +31,7 @@ public class LivroController {
     private LivroRepository livroRepository;
 
 
-    @PostMapping(value = "/livros")
+    @PostMapping
     public ResponseEntity<?> cadastro(@RequestBody @Valid LivroDTO dto, UriComponentsBuilder uriComponentsBuilder) {
 
         Optional<Autor> possivelAutor = autorRepository.findById(dto.getIdAutor());
@@ -52,4 +53,13 @@ public class LivroController {
 
         return ResponseEntity.created(uri).build();
     }
+
+    @GetMapping
+    public ResponseEntity<List<LivroResponse>> livros() {
+        List<Livro> livros = livroRepository.findAll();
+        List<LivroResponse> listaLivros = LivroResponse.converter(livros);
+        return ResponseEntity.ok().body(listaLivros);
+    }
+
+
 }
