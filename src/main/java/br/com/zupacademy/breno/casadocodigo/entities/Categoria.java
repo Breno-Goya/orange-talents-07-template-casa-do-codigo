@@ -1,7 +1,5 @@
 package br.com.zupacademy.breno.casadocodigo.entities;
 
-import br.com.zupacademy.breno.casadocodigo.validations.annotations.UniqueValue;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 

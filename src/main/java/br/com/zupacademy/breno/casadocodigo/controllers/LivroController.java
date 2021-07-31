@@ -8,6 +8,7 @@ import br.com.zupacademy.breno.casadocodigo.repositories.AutorRepository;
 import br.com.zupacademy.breno.casadocodigo.repositories.CategoriaRepository;
 import br.com.zupacademy.breno.casadocodigo.repositories.LivroRepository;
 import br.com.zupacademy.breno.casadocodigo.response.LivroResponse;
+import br.com.zupacademy.breno.casadocodigo.response.LivroResponseDetalhes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -61,5 +62,13 @@ public class LivroController {
         return ResponseEntity.ok().body(listaLivros);
     }
 
-
+    @GetMapping("/{id}")
+    public ResponseEntity<LivroResponseDetalhes> buscaLivroId(@PathVariable Long id) {
+        Optional<Livro> livroObj = livroRepository.findById(id);
+        if (livroObj.isPresent()) {
+            Livro livro = livroObj.get();
+            return ResponseEntity.ok().body(new LivroResponseDetalhes(livro));
+        }
+        return ResponseEntity.notFound().build();
+    }
 }

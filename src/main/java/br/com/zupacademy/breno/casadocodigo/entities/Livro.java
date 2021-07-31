@@ -37,7 +37,8 @@ public class Livro {
     @Deprecated
     public Livro() {}
 
-    public Livro(String titulo, String resumo, String sumario, BigDecimal preco, Integer numeroPaginas, String isbn, LocalDate dataPublicacao, Autor autor, Categoria categoria) {
+    public Livro(String titulo, String resumo, String sumario, BigDecimal preco, Integer numeroPaginas, String isbn,
+                 LocalDate dataPublicacao, Autor autor, Categoria categoria) {
         this.titulo = titulo;
         this.resumo = resumo;
         this.sumario = sumario;
