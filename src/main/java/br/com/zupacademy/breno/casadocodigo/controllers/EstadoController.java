@@ -31,9 +31,9 @@ public class EstadoController {
 
        Optional<Estado> possivelEstado = dto.toModel(paisRepository);
        if (possivelEstado.isPresent()) {
-           repository.save(possivelEstado.get());
+           Estado estado = repository.save(possivelEstado.get());
            URI uri = uriComponentsBuilder.path("/estados/{id}").buildAndExpand(possivelEstado.isPresent()).toUri();
-           return ResponseEntity.created(uri).build();
+           return ResponseEntity.created(uri).body(estado);
        }
        return ResponseEntity.badRequest().build();
     }

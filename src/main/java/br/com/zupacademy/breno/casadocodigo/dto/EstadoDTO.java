@@ -3,11 +3,13 @@ package br.com.zupacademy.breno.casadocodigo.dto;
 import br.com.zupacademy.breno.casadocodigo.entities.Estado;
 import br.com.zupacademy.breno.casadocodigo.entities.Pais;
 import br.com.zupacademy.breno.casadocodigo.repositories.PaisRepository;
+import br.com.zupacademy.breno.casadocodigo.validations.annotations.NomeEstadoPaisUnico;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Optional;
 
+@NomeEstadoPaisUnico
 public class EstadoDTO {
 
     @NotBlank
@@ -29,5 +31,13 @@ public class EstadoDTO {
             return Optional.of(estado);
         }
         return Optional.empty();
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public Long getPaisId() {
+        return paisId;
     }
 }
