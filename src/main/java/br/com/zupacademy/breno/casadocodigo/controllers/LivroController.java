@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
@@ -33,6 +34,7 @@ public class LivroController {
 
 
     @PostMapping
+    @Transactional
     public ResponseEntity<?> cadastro(@RequestBody @Valid LivroDTO dto, UriComponentsBuilder uriComponentsBuilder) {
 
         Optional<Autor> possivelAutor = autorRepository.findById(dto.getIdAutor());

@@ -3,6 +3,7 @@ package br.com.zupacademy.breno.casadocodigo.dto;
 import br.com.zupacademy.breno.casadocodigo.entities.Autor;
 import br.com.zupacademy.breno.casadocodigo.entities.Categoria;
 import br.com.zupacademy.breno.casadocodigo.entities.Livro;
+import br.com.zupacademy.breno.casadocodigo.validations.annotations.ExistId;
 import br.com.zupacademy.breno.casadocodigo.validations.annotations.UniqueValue;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -30,7 +31,7 @@ public class LivroDTO {
     @NotNull @Min(100)
     private Integer numeroPaginas;
 
-    @NotBlank
+    @NotBlank @UniqueValue(domainClass = Livro.class, fieldName = "isbn")
     private String isbn;
 
     @Future
@@ -38,10 +39,10 @@ public class LivroDTO {
     @JsonFormat(pattern = "dd/MM/yyyy", shape = JsonFormat.Shape.STRING)
     private LocalDate dataPublicacao;
 
-    @NotNull
+    @NotNull @ExistId(domainClass = Categoria.class, fieldName = "id")
     private Long idCategoria;
 
-    @NotNull
+    @NotNull @ExistId(domainClass = Autor.class, fieldName = "id")
     private Long idAutor;
 
     @Deprecated

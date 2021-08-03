@@ -7,16 +7,15 @@ import br.com.zupacademy.breno.casadocodigo.validations.CategoriaDuplicadaValida
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
+@RequestMapping("/categorias")
 public class CategoriaController {
 
     @Autowired
@@ -30,7 +29,8 @@ public class CategoriaController {
         binder.addValidators(categoriaDuplicadoValidator);
     }
 
-    @PostMapping(value = "/categorias")
+    @PostMapping
+    @Transactional
     public ResponseEntity<?> cadastra(@RequestBody @Valid CategoriaDTO dto, UriComponentsBuilder uriComponentsBuilder) {
 
         Categoria categoria = dto.toModel();

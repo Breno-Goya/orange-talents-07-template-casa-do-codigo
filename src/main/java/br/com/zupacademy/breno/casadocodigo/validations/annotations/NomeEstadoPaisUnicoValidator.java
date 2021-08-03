@@ -4,7 +4,6 @@ import br.com.zupacademy.breno.casadocodigo.dto.EstadoDTO;
 import br.com.zupacademy.breno.casadocodigo.entities.Estado;
 import br.com.zupacademy.breno.casadocodigo.repositories.EstadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

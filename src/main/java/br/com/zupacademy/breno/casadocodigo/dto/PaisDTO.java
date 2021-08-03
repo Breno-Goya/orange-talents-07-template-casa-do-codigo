@@ -17,5 +17,4 @@ public class PaisDTO {
     public Pais toModel() {
         return new Pais(nome);
     }
-
 }

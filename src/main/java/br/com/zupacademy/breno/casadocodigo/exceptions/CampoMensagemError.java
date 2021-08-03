@@ -1,11 +1,11 @@
 package br.com.zupacademy.breno.casadocodigo.exceptions;
 
-public class CampoMensagem {
+public class CampoMensagemError {
 
     private String nomeCampo;
     private String mensagem;
 
-    public CampoMensagem(String nomeCampo, String mensagem) {
+    public CampoMensagemError(String nomeCampo, String mensagem) {
         this.nomeCampo = nomeCampo;
         this.mensagem = mensagem;
     }

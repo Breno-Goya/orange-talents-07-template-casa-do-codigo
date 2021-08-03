@@ -1,6 +1,7 @@
 package br.com.zupacademy.breno.casadocodigo.dto;
 
 import br.com.zupacademy.breno.casadocodigo.entities.Autor;
+import br.com.zupacademy.breno.casadocodigo.validations.annotations.UniqueValue;
 
 import javax.persistence.Column;
 import javax.validation.constraints.Email;
@@ -9,13 +10,13 @@ import javax.validation.constraints.Size;
 
 public class AutorDTO {
 
-    @NotBlank(message = "Campo obrigatório")
+    @NotBlank
     private String nome;
 
-    @NotBlank(message = "Campo obrigatório") @Email @Column(unique = true)
+    @NotBlank @Email @UniqueValue(domainClass = Autor.class, fieldName = "email")
     private String email;
 
-    @NotBlank(message = "Campo obrigatório") @Size(max = 400)
+    @NotBlank @Size(max = 400)
     private String descricao;
 
 

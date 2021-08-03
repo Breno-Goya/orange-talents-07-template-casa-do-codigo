@@ -26,4 +26,8 @@ public class Estado {
     public Long getId() {
         return id;
     }
+
+    public boolean estadoValido(Pais pais) {
+        return this.pais.equals(pais);
+    }
 }

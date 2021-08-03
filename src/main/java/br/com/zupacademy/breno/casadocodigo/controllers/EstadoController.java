@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.Optional;
@@ -27,6 +28,7 @@ public class EstadoController {
     private EstadoRepository repository;
 
     @PostMapping
+    @Transactional
     public ResponseEntity<?> cadastrarEstado (@RequestBody @Valid EstadoDTO dto, UriComponentsBuilder uriComponentsBuilder) {
 
        Optional<Estado> possivelEstado = dto.toModel(paisRepository);

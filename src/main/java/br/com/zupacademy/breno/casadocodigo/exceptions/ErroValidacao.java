@@ -5,13 +5,13 @@ import java.util.List;
 
 public class ErroValidacao extends ErroPadrao {
 
-    private List<CampoMensagem> erros = new ArrayList<>();
+    private List<CampoMensagemError> erros = new ArrayList<>();
 
-    public List<CampoMensagem> getErros() {
+    public List<CampoMensagemError> getErros() {
         return erros;
     }
 
     public void addErros(String campoErro, String mensagem) {
-        erros.add(new CampoMensagem(campoErro, mensagem));
+        erros.add(new CampoMensagemError(campoErro, mensagem));
     }
 }

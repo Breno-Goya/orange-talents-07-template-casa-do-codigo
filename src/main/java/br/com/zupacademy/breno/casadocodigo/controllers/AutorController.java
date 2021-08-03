@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
 
@@ -31,6 +32,7 @@ public class AutorController {
     }
 
     @PostMapping(value = "/autores")
+    @Transactional
     public ResponseEntity<?> cadastra(@RequestBody @Valid AutorDTO dto, UriComponentsBuilder uriComponentsBuilder) {
 
         Autor autor = dto.toModel();
